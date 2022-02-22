@@ -1,0 +1,23 @@
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml">
+        <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI" />
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/sap/ZOTC_C_PROFILE_CDS/$metadata">
+        <edmx:Include Namespace="ZOTC_C_PROFILE_CDS" />
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="oup.otc">
+            <!-- <Annotations Target="ZOTC_C_PROFILE_CDS.ZOTC_C_PROFILEType">
+                <Annotation Term="UI.Facets">
+                    <Collection>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Target" AnnotationPath="REPLACE_WITH_PROPERTY_PATH"/>
+                            <PropertyValue Property="Label" String="Custom Profile"/>
+                            <PropertyValue Property="ID" String="custom_profile"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations> -->
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

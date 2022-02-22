@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:Reference Uri="https://s4dbasdev130:443/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://s4dbasdev130:443/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://s4dbasdev130:443/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://s4dbasdev130:443/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="Aggregation"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://s4dbasdev130:443/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/>
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZOTC_C_PROFILE_CDS" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="I_DraftAdministrativeDataType" sap:label="Draft Administration Data" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="DraftUUID"/>
+                </Key>
+                <Property Name="DraftUUID" Type="Edm.Guid" Nullable="false" sap:label="Draft (Technical ID)"/>
+                <Property Name="DraftEntityType" Type="Edm.String" MaxLength="30" sap:display-format="UpperCase" sap:label="Draft Entity ID"/>
+                <Property Name="CreationDateTime" Type="Edm.DateTimeOffset" Precision="7" sap:label="Draft Created On"/>
+                <Property Name="CreatedByUser" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:text="CreatedByUserDescription" sap:label="Draft Created By"/>
+                <Property Name="LastChangeDateTime" Type="Edm.DateTimeOffset" Precision="7" sap:label="Draft Last Changed On"/>
+                <Property Name="LastChangedByUser" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:text="LastChangedByUserDescription" sap:label="Draft Last Changed By"/>
+                <Property Name="DraftAccessType" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Draft Access Type"/>
+                <Property Name="ProcessingStartDateTime" Type="Edm.DateTimeOffset" Precision="7" sap:label="Draft In Process Since"/>
+                <Property Name="InProcessByUser" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:text="InProcessByUserDescription" sap:label="Draft In Process By"/>
+                <Property Name="DraftIsKeptByUser" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Draft Is Kept By User"/>
+                <Property Name="EnqueueStartDateTime" Type="Edm.DateTimeOffset" Precision="7" sap:label="Draft Locked Since"/>
+                <Property Name="DraftIsCreatedByMe" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Draft Created By Me"/>
+                <Property Name="DraftIsLastChangedByMe" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Draft Last Changed By Me"/>
+                <Property Name="DraftIsProcessedByMe" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Draft In Process By Me"/>
+                <Property Name="CreatedByUserDescription" Type="Edm.String" MaxLength="80" sap:label="Draft Created By (Description)"/>
+                <Property Name="LastChangedByUserDescription" Type="Edm.String" MaxLength="80" sap:label="Draft Last Changed By (Description)"/>
+                <Property Name="InProcessByUserDescription" Type="Edm.String" MaxLength="80" sap:label="Draft In Process By (Description)"/>
+            </EntityType>
+            <EntityType Name="ZOTC_C_PROFILEType" sap:label="Maintain Profile" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="profile"/>
+                    <PropertyRef Name="application"/>
+                    <PropertyRef Name="DraftUUID"/>
+                    <PropertyRef Name="IsActiveEntity"/>
+                </Key>
+                <Property Name="Activation_ac" Type="Edm.Boolean" sap:label="Dyn. Action Control" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Edit_ac" Type="Edm.Boolean" sap:label="Dyn. Action Control" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Preparation_ac" Type="Edm.Boolean" sap:label="Dyn. Action Control" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Validation_ac" Type="Edm.Boolean" sap:label="Dyn. Action Control" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="profile" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:required-in-filter="true" sap:text="profile" sap:label="Profile"/>
+                <Property Name="application" Type="Edm.String" Nullable="false" MaxLength="2" sap:display-format="UpperCase" sap:text="application" sap:label="Application Name"/>
+                <Property Name="ProfileDescription" Type="Edm.String" MaxLength="100" sap:display-format="UpperCase" sap:text="ProfileDescription" sap:label="Description"/>
+                <Property Name="HasDraftEntity" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Has Draft" sap:heading="" sap:quickinfo="" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="DraftUUID" Type="Edm.Guid" Nullable="false" sap:label="Key" sap:heading="" sap:quickinfo="" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="DraftEntityCreationDateTime" Type="Edm.DateTimeOffset" Precision="7" sap:label="Draft Created On" sap:heading="" sap:quickinfo="" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="DraftEntityLastChangeDateTime" Type="Edm.DateTimeOffset" Precision="7" sap:label="Draft Last Changed On" sap:heading="" sap:quickinfo="" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="HasActiveEntity" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Has active" sap:heading="" sap:quickinfo="" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" sap:display-format="UpperCase" sap:label="Is active" sap:heading="" sap:quickinfo="" sap:creatable="false" sap:updatable="false"/>
+                <NavigationProperty Name="DraftAdministrativeData" Relationship="ZOTC_C_PROFILE_CDS.assoc_A8179564FF061159E1BF1462F0EDC382" FromRole="FromRole_assoc_A8179564FF061159E1BF1462F0EDC382" ToRole="ToRole_assoc_A8179564FF061159E1BF1462F0EDC382"/>
+                <NavigationProperty Name="SiblingEntity" Relationship="ZOTC_C_PROFILE_CDS.assoc_E4E975E31D6B4A8D2DED06D1E8953E85" FromRole="FromRole_assoc_E4E975E31D6B4A8D2DED06D1E8953E85" ToRole="ToRole_assoc_E4E975E31D6B4A8D2DED06D1E8953E85"/>
+                <NavigationProperty Name="to_nonrestpayer" Relationship="ZOTC_C_PROFILE_CDS.assoc_4C4E0DD6A6DA58F9A3C0482FEAA00B51" FromRole="FromRole_assoc_4C4E0DD6A6DA58F9A3C0482FEAA00B51" ToRole="ToRole_assoc_4C4E0DD6A6DA58F9A3C0482FEAA00B51"/>
+                <NavigationProperty Name="to_nonrestsalesdist" Relationship="ZOTC_C_PROFILE_CDS.assoc_80A76CB1FF5CFD37D67CEB235346EDE9" FromRole="FromRole_assoc_80A76CB1FF5CFD37D67CEB235346EDE9" ToRole="ToRole_assoc_80A76CB1FF5CFD37D67CEB235346EDE9"/>
+                <NavigationProperty Name="to_restpayer" Relationship="ZOTC_C_PROFILE_CDS.assoc_A49653CBDFDF777AEB35B348D3E55931" FromRole="FromRole_assoc_A49653CBDFDF777AEB35B348D3E55931" ToRole="ToRole_assoc_A49653CBDFDF777AEB35B348D3E55931"/>
+                <NavigationProperty Name="to_restsalesdist" Relationship="ZOTC_C_PROFILE_CDS.assoc_4CA77A4A6228C98A7AF3798504AFDEB2" FromRole="FromRole_assoc_4CA77A4A6228C98A7AF3798504AFDEB2" ToRole="ToRole_assoc_4CA77A4A6228C98A7AF3798504AFDEB2"/>
+            </EntityType>
+            <EntityType Name="ZOTC_PRO_PAYERType" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="PROFILE"/>
+                    <PropertyRef Name="PAYER"/>
+                    <PropertyRef Name="RESTRICTION_FLAG"/>
+                </Key>
+                <Property Name="PROFILE" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Profile"/>
+                <Property Name="PAYER" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Business Partner"/>
+                <Property Name="RESTRICTION_FLAG" Type="Edm.Boolean" Nullable="false" sap:display-format="UpperCase" sap:label="Restriction Flag"/>
+                <Property Name="DELIVERY_BLOCK" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Delivery Block"/>
+                <Property Name="PLANT" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Plant"/>
+                <Property Name="STORAGE_LOCATION" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Storage location"/>
+            </EntityType>
+            <EntityType Name="ZOTC_PRO_SALESType" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="PROFILE"/>
+                    <PropertyRef Name="SALES_DISTRICT"/>
+                    <PropertyRef Name="RESTRICTION_FLAG"/>
+                </Key>
+                <Property Name="PROFILE" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Profile"/>
+                <Property Name="SALES_DISTRICT" Type="Edm.String" Nullable="false" MaxLength="6" sap:display-format="UpperCase" sap:label="Sales District"/>
+                <Property Name="RESTRICTION_FLAG" Type="Edm.Boolean" Nullable="false" sap:display-format="UpperCase" sap:label="Restriction Flag"/>
+                <Property Name="AGENT" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Business Partner"/>
+                <Property Name="DELIVERY_BLOCK" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Delivery Block"/>
+                <Property Name="PLANT" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Plant"/>
+                <Property Name="STORAGE_LOCATION" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Storage location"/>
+            </EntityType>
+            <ComplexType Name="ValidationFunctionResult">
+                <Property Name="IsValid" Type="Edm.Boolean" sap:label="Is valid"/>
+            </ComplexType>
+            <Association Name="assoc_E4E975E31D6B4A8D2DED06D1E8953E85" sap:content-version="1">
+                <End Type="ZOTC_C_PROFILE_CDS.ZOTC_C_PROFILEType" Multiplicity="1" Role="FromRole_assoc_E4E975E31D6B4A8D2DED06D1E8953E85"/>
+                <End Type="ZOTC_C_PROFILE_CDS.ZOTC_C_PROFILEType" Multiplicity="0..1" Role="ToRole_assoc_E4E975E31D6B4A8D2DED06D1E8953E85"/>
+            </Association>
+            <Association Name="assoc_4C4E0DD6A6DA58F9A3C0482FEAA00B51" sap:content-version="1">
+                <End Type="ZOTC_C_PROFILE_CDS.ZOTC_C_PROFILEType" Multiplicity="1" Role="FromRole_assoc_4C4E0DD6A6DA58F9A3C0482FEAA00B51"/>
+                <End Type="ZOTC_C_PROFILE_CDS.ZOTC_PRO_PAYERType" Multiplicity="*" Role="ToRole_assoc_4C4E0DD6A6DA58F9A3C0482FEAA00B51"/>
+            </Association>
+            <Association Name="assoc_80A76CB1FF5CFD37D67CEB235346EDE9" sap:content-version="1">
+                <End Type="ZOTC_C_PROFILE_CDS.ZOTC_C_PROFILEType" Multiplicity="1" Role="FromRole_assoc_80A76CB1FF5CFD37D67CEB235346EDE9"/>
+                <End Type="ZOTC_C_PROFILE_CDS.ZOTC_PRO_SALESType" Multiplicity="*" Role="ToRole_assoc_80A76CB1FF5CFD37D67CEB235346EDE9"/>
+            </Association>
+            <Association Name="assoc_A49653CBDFDF777AEB35B348D3E55931" sap:content-version="1">
+                <End Type="ZOTC_C_PROFILE_CDS.ZOTC_C_PROFILEType" Multiplicity="1" Role="FromRole_assoc_A49653CBDFDF777AEB35B348D3E55931"/>
+                <End Type="ZOTC_C_PROFILE_CDS.ZOTC_PRO_PAYERType" Multiplicity="*" Role="ToRole_assoc_A49653CBDFDF777AEB35B348D3E55931"/>
+            </Association>
+            <Association Name="assoc_4CA77A4A6228C98A7AF3798504AFDEB2" sap:content-version="1">
+                <End Type="ZOTC_C_PROFILE_CDS.ZOTC_C_PROFILEType" Multiplicity="1" Role="FromRole_assoc_4CA77A4A6228C98A7AF3798504AFDEB2"/>
+                <End Type="ZOTC_C_PROFILE_CDS.ZOTC_PRO_SALESType" Multiplicity="*" Role="ToRole_assoc_4CA77A4A6228C98A7AF3798504AFDEB2"/>
+            </Association>
+            <Association Name="assoc_A8179564FF061159E1BF1462F0EDC382" sap:content-version="1">
+                <End Type="ZOTC_C_PROFILE_CDS.ZOTC_C_PROFILEType" Multiplicity="1" Role="FromRole_assoc_A8179564FF061159E1BF1462F0EDC382"/>
+                <End Type="ZOTC_C_PROFILE_CDS.I_DraftAdministrativeDataType" Multiplicity="0..1" Role="ToRole_assoc_A8179564FF061159E1BF1462F0EDC382"/>
+            </Association>
+            <EntityContainer Name="ZOTC_C_PROFILE_CDS_Entities" m:IsDefaultEntityContainer="true" sap:message-scope-supported="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="I_DraftAdministrativeData" EntityType="ZOTC_C_PROFILE_CDS.I_DraftAdministrativeDataType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="ZOTC_C_PROFILE" EntityType="ZOTC_C_PROFILE_CDS.ZOTC_C_PROFILEType" sap:creatable="false" sap:requires-filter="true" sap:content-version="1"/>
+                <EntitySet Name="ZOTC_PRO_PAYER" EntityType="ZOTC_C_PROFILE_CDS.ZOTC_PRO_PAYERType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="ZOTC_PRO_SALES" EntityType="ZOTC_C_PROFILE_CDS.ZOTC_PRO_SALESType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <AssociationSet Name="assoc_4CA77A4A6228C98A7AF3798504AFDEB2" Association="ZOTC_C_PROFILE_CDS.assoc_4CA77A4A6228C98A7AF3798504AFDEB2" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZOTC_C_PROFILE" Role="FromRole_assoc_4CA77A4A6228C98A7AF3798504AFDEB2"/>
+                    <End EntitySet="ZOTC_PRO_SALES" Role="ToRole_assoc_4CA77A4A6228C98A7AF3798504AFDEB2"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_A8179564FF061159E1BF1462F0EDC382" Association="ZOTC_C_PROFILE_CDS.assoc_A8179564FF061159E1BF1462F0EDC382" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZOTC_C_PROFILE" Role="FromRole_assoc_A8179564FF061159E1BF1462F0EDC382"/>
+                    <End EntitySet="I_DraftAdministrativeData" Role="ToRole_assoc_A8179564FF061159E1BF1462F0EDC382"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_4C4E0DD6A6DA58F9A3C0482FEAA00B51" Association="ZOTC_C_PROFILE_CDS.assoc_4C4E0DD6A6DA58F9A3C0482FEAA00B51" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZOTC_C_PROFILE" Role="FromRole_assoc_4C4E0DD6A6DA58F9A3C0482FEAA00B51"/>
+                    <End EntitySet="ZOTC_PRO_PAYER" Role="ToRole_assoc_4C4E0DD6A6DA58F9A3C0482FEAA00B51"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_A49653CBDFDF777AEB35B348D3E55931" Association="ZOTC_C_PROFILE_CDS.assoc_A49653CBDFDF777AEB35B348D3E55931" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZOTC_C_PROFILE" Role="FromRole_assoc_A49653CBDFDF777AEB35B348D3E55931"/>
+                    <End EntitySet="ZOTC_PRO_PAYER" Role="ToRole_assoc_A49653CBDFDF777AEB35B348D3E55931"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_E4E975E31D6B4A8D2DED06D1E8953E85" Association="ZOTC_C_PROFILE_CDS.assoc_E4E975E31D6B4A8D2DED06D1E8953E85" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZOTC_C_PROFILE" Role="FromRole_assoc_E4E975E31D6B4A8D2DED06D1E8953E85"/>
+                    <End EntitySet="ZOTC_C_PROFILE" Role="ToRole_assoc_E4E975E31D6B4A8D2DED06D1E8953E85"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_80A76CB1FF5CFD37D67CEB235346EDE9" Association="ZOTC_C_PROFILE_CDS.assoc_80A76CB1FF5CFD37D67CEB235346EDE9" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZOTC_C_PROFILE" Role="FromRole_assoc_80A76CB1FF5CFD37D67CEB235346EDE9"/>
+                    <End EntitySet="ZOTC_PRO_SALES" Role="ToRole_assoc_80A76CB1FF5CFD37D67CEB235346EDE9"/>
+                </AssociationSet>
+                <FunctionImport Name="ZOTC_C_PROFILEActivation" ReturnType="ZOTC_C_PROFILE_CDS.ZOTC_C_PROFILEType" EntitySet="ZOTC_C_PROFILE" m:HttpMethod="POST" sap:action-for="ZOTC_C_PROFILE_CDS.ZOTC_C_PROFILEType" sap:applicable-path="Activation_ac">
+                    <Parameter Name="profile" Type="Edm.String" Mode="In" MaxLength="10"/>
+                    <Parameter Name="application" Type="Edm.String" Mode="In" MaxLength="2"/>
+                    <Parameter Name="DraftUUID" Type="Edm.Guid" Mode="In"/>
+                    <Parameter Name="IsActiveEntity" Type="Edm.Boolean" Mode="In"/>
+                </FunctionImport>
+                <FunctionImport Name="ZOTC_C_PROFILEEdit" ReturnType="ZOTC_C_PROFILE_CDS.ZOTC_C_PROFILEType" EntitySet="ZOTC_C_PROFILE" m:HttpMethod="POST" sap:action-for="ZOTC_C_PROFILE_CDS.ZOTC_C_PROFILEType" sap:applicable-path="Edit_ac">
+                    <Parameter Name="profile" Type="Edm.String" Mode="In" MaxLength="10"/>
+                    <Parameter Name="application" Type="Edm.String" Mode="In" MaxLength="2"/>
+                    <Parameter Name="DraftUUID" Type="Edm.Guid" Mode="In"/>
+                    <Parameter Name="IsActiveEntity" Type="Edm.Boolean" Mode="In"/>
+                    <Parameter Name="PreserveChanges" Type="Edm.Boolean" Mode="In" Nullable="true"/>
+                </FunctionImport>
+                <FunctionImport Name="ZOTC_C_PROFILEPreparation" ReturnType="ZOTC_C_PROFILE_CDS.ZOTC_C_PROFILEType" EntitySet="ZOTC_C_PROFILE" m:HttpMethod="POST" sap:action-for="ZOTC_C_PROFILE_CDS.ZOTC_C_PROFILEType" sap:applicable-path="Preparation_ac">
+                    <Parameter Name="profile" Type="Edm.String" Mode="In" MaxLength="10"/>
+                    <Parameter Name="application" Type="Edm.String" Mode="In" MaxLength="2"/>
+                    <Parameter Name="DraftUUID" Type="Edm.Guid" Mode="In"/>
+                    <Parameter Name="IsActiveEntity" Type="Edm.Boolean" Mode="In"/>
+                    <Parameter Name="SideEffectsQualifier" Type="Edm.String" Mode="In" Nullable="true"/>
+                </FunctionImport>
+                <FunctionImport Name="ZOTC_C_PROFILEValidation" ReturnType="ZOTC_C_PROFILE_CDS.ValidationFunctionResult" m:HttpMethod="GET" sap:action-for="ZOTC_C_PROFILE_CDS.ZOTC_C_PROFILEType" sap:applicable-path="Validation_ac">
+                    <Parameter Name="profile" Type="Edm.String" Mode="In" MaxLength="10"/>
+                    <Parameter Name="application" Type="Edm.String" Mode="In" MaxLength="2"/>
+                    <Parameter Name="DraftUUID" Type="Edm.Guid" Mode="In"/>
+                    <Parameter Name="IsActiveEntity" Type="Edm.Boolean" Mode="In"/>
+                    <Parameter Name="SideEffectsQualifier" Type="Edm.String" Mode="In" Nullable="true"/>
+                </FunctionImport>
+            </EntityContainer>
+            <Annotations Target="ZOTC_C_PROFILE_CDS.ZOTC_C_PROFILE_CDS_Entities/ZOTC_C_PROFILE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.DraftRoot">
+                    <Record>
+                        <PropertyValue Property="ActivationAction" String="ZOTC_C_PROFILE_CDS.ZOTC_C_PROFILE_CDS_Entities/ZOTC_C_PROFILEActivation"/>
+                        <PropertyValue Property="EditAction" String="ZOTC_C_PROFILE_CDS.ZOTC_C_PROFILE_CDS_Entities/ZOTC_C_PROFILEEdit"/>
+                        <PropertyValue Property="PreparationAction" String="ZOTC_C_PROFILE_CDS.ZOTC_C_PROFILE_CDS_Entities/ZOTC_C_PROFILEPreparation"/>
+                        <PropertyValue Property="ValidationFunction" String="ZOTC_C_PROFILE_CDS.ZOTC_C_PROFILE_CDS_Entities/ZOTC_C_PROFILEValidation"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.FilterRestrictions">
+                    <Record>
+                        <PropertyValue Property="RequiresFilter" Bool="true"/>
+                        <PropertyValue Property="NonFilterableProperties">
+                            <Collection>
+                                <PropertyPath>Activation_ac</PropertyPath>
+                                <PropertyPath>Edit_ac</PropertyPath>
+                                <PropertyPath>Preparation_ac</PropertyPath>
+                                <PropertyPath>Validation_ac</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="RequiredProperties">
+                            <Collection>
+                                <PropertyPath>profile</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.SortRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonSortableProperties">
+                            <Collection>
+                                <PropertyPath>Activation_ac</PropertyPath>
+                                <PropertyPath>Edit_ac</PropertyPath>
+                                <PropertyPath>Preparation_ac</PropertyPath>
+                                <PropertyPath>Validation_ac</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZOTC_C_PROFILE_CDS.ZOTC_C_PROFILE_CDS_Entities" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Aggregation.ApplySupported">
+                    <Record>
+                        <PropertyValue Property="Transformations">
+                            <Collection>
+                                <String>aggregate</String>
+                                <String>groupby</String>
+                                <String>filter</String>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Rollup" EnumMember="None"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <atom:link rel="self" href="https://s4dbasdev130:443/sap/opu/odata/sap/ZOTC_C_PROFILE_CDS/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="https://s4dbasdev130:443/sap/opu/odata/sap/ZOTC_C_PROFILE_CDS/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
