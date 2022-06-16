@@ -97,12 +97,10 @@
         "type": "sap.ui.model.resource.ResourceModel",
         "uri": "i18n/ObjectPage/ZOTC_C_PROFILE/i18n.properties"
       },
-
       "i18n|sap.suite.ui.generic.template.ObjectPage|ZOTC_PRO_SALES": {
         "type": "sap.ui.model.resource.ResourceModel",
         "uri": "i18n/ObjectPage/ZOTC_PRO_SALES/i18n.properties"
       },
-
       "": {
         "dataSource": "mainService",
         "preload": true,
@@ -117,7 +115,44 @@
       }
     },
     "extends": {
-      "extensions": {}
+      "extensions": {
+        "sap.ui.controllerExtensions": {
+          "sap.suite.ui.generic.template.ObjectPage.view.Details": {
+            "controllerName": "oup.otc.profile.ext.controller.ObjectPageExt",
+            "sap.ui.generic.app": {
+              "ZOTC_C_PROFILE": {
+                "EntitySet": "ZOTC_C_PROFILE",
+                "Header": {
+                  "Actions": {
+                    "idDelete": {
+                      "id": "idDeleteButton",
+                      "text": "Delete",
+                      "press": "onDeletePress",
+                      "requiresSelection": false
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "sap.suite.ui.generic.template.ListReport.view.ListReport": {
+            "controllerName": "oup.otc.profile.ext.controller.ListReportExt",
+            "sap.ui.generic.app": {
+              "ZOTC_C_PROFILE": {
+                "EntitySet": "ZOTC_C_PROFILE",
+                "Actions": {
+                  "idMultipleDeleteBtn": {
+                    "id": "idMultipleDeleteBtnButton",
+                    "text": "Delete",
+                    "press": "onDeletePress",
+                    "requiresSelection": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     },
     "contentDensities": {
       "compact": true,
