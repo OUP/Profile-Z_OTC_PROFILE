@@ -2,6 +2,15 @@ sap.ui.define(["sap/m/MessageBox"], function (MessageBox) {
   let _sBtnId;
   ("use strict");
   return {
+    onInit: function () {
+      // attach page data loaded on odata callback with context as response
+      this.extensionAPI.attachPageDataLoaded((_) => {
+        // hide bopf delete button
+        const sId = this.getView().getId() + "--delete";
+        sap.ui.getCore().byId(sId).setVisible(false);
+      });
+    },
+
     onDeletePress: function (_) {
       const oModel = this.getView().getModel();
       const oData = this.getView().getBindingContext().getObject();

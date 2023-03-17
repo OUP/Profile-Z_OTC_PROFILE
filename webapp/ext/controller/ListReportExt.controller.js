@@ -3,10 +3,15 @@ sap.ui.define(["sap/m/MessageBox"], function (MessageBox) {
   return {
     onInit: function () {
       const oModel = this.getOwnerComponent().getModel();
+      
+      // hide bopf delete button
+      const sId = this.getView().getId() + "--deleteEntry";
+      sap.ui.getCore().byId(sId).setVisible(false);
 
       //Set deferred groups and create Function Imports
       oModel.setDeferredGroups(["batchFunctionImport"]);
     },
+
     onDeletePress: function (oEvent) {
       const sViewId = this.getView().getId();
       const sTableId = sViewId + "--responsiveTable";
