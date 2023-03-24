@@ -6,8 +6,12 @@ sap.ui.define(["sap/m/MessageBox"], function (MessageBox) {
       // attach page data loaded on odata callback with context as response
       this.extensionAPI.attachPageDataLoaded((_) => {
         // hide bopf delete button
-        const sId = this.getView().getId() + "--delete";
-        sap.ui.getCore().byId(sId).setVisible(false);
+        const sViewId = this.getView().getId();
+        const bProfilePage = /ZOTC_C_PROFILE$/g.test(sViewId);
+        
+        if(!bProfilePage) return;
+
+        sap.ui.getCore().byId(`${sViewId}--delete`).setVisible(false);
       });
     },
 
